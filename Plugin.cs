@@ -16,9 +16,6 @@ public class Plugin : BaseUnityPlugin
     
     private void Awake()
     {
-        Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} starting patcher #############################");
-        Harmony.DEBUG = true;
-        FileLog.Log("----------------------");
         _harmony = Harmony.CreateAndPatchAll(typeof(NepEndlessSiloPatch));
         Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded! #############################");
     }
@@ -37,10 +34,8 @@ internal class NepEndlessSiloPatch
     [HarmonyPatch(typeof(SprinklerTile), nameof(SprinklerTile.waterTiles))]
     private static void NepEndlessSilo(SprinklerTile __instance, int xPos, int yPos, List<int[]> waterTanks)
     {
-        FileLog.Log("In prefix patch");
         if (__instance.isSilo)
         {
-            FileLog.Log(string.Format($"Ifilling silo at {0} {1}",xPos, yPos));
             WorldManager.manageWorld.onTileStatusMap[xPos, yPos] = 200;
         }
 
