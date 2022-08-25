@@ -17,7 +17,7 @@ public class Plugin : BaseUnityPlugin
     private void Awake()
     {
         _harmony = Harmony.CreateAndPatchAll(typeof(NepEndlessSiloPatch));
-        Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded! #############################");
+        Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
     }
 
     private void OnDestroy()
